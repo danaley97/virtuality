@@ -1,0 +1,114 @@
+/* Configuración general de la página */
+body {
+    background-color: #002550;
+    color: #e0e0e0;
+    font-family: Arial, sans-serif;
+
+    background-image: url('imagenes/fondo.jpg');
+    background-size: cover; /* Hace que la imagen cubra toda la pantalla */
+    background-position: center; /* Centra la imagen */
+    background-attachment: fixed; /* La imagen de fondo se mantiene fija al hacer scroll */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+
+}
+
+h1 {
+    color: #0fffcf;
+    
+    font-size: 3em;
+    margin-top: 20px;
+
+    font-family: 'Orbitron', sans-serif;
+    color: #00ffff; /* Azul neón para el texto */
+    text-shadow: 0px 0px 10px #00ffff, 0px 0px 20px #00ffff; /* Efecto de neón */
+}
+
+header, footer {
+    text-align: center;
+    padding: 1em;
+}
+
+/* Estilos de navegación */
+nav .pagination .page-link {
+    color: #fff;
+    background-color: transparent;
+    border: 2px solid #0fffcf;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+    text-shadow: 0px 0px 5px #0fffcf;
+}
+
+nav .pagination .page-link:hover {
+    background-color: #0fffcf;
+    color: #0f0f0f;
+    box-shadow: 0px 0px 8px #0fffcf;
+}
+
+nav .pagination .page-item.active .page-link {
+    background-color: #0fffcf;
+    color: #0f0f0f;
+    box-shadow: 0px 0px 8px #0fffcf;
+}
+
+/* Estilos para tarjetas */
+.card {
+    background-color: #1b1b1b;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px #00ffcc;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 0px 20px #00ffcc, 0px 0px 30px #00ffcc;
+}
+
+.card-title {
+    color: #00ffcc;
+    text-shadow: 0px 0px 5px #00ffcc;
+}
+
+.card-text {
+    color: #c8c8c8;
+}
+
+/* Botones */
+.btn-primary {
+    background-color: transparent;
+    color: #00ffcc;
+    border: 2px solid #00ffcc;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+    text-shadow: 0px 0px 5px #00ffcc;
+}
+
+.btn-primary:hover {
+    background-color: #00ffcc;
+    color: #0f0f0f;
+    box-shadow: 0px 0px 8px #00ffcc;
+}
+
+/* Estilos del modal */
+.modal-content {
+    background-color: #1a1a1a;
+    border: none;
+    color: #e0e0e0;
+}
+
+.modal-header h1 {
+    color: #0fffcf;
+    text-shadow: 0px 0px 5px #0fffcf;
+}
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+    filter: drop-shadow(0px 0px 5px #00ffcc);
+}
+
+/* Estilos del footer */
+footer {
+    color: #0fffcf;
+    text-shadow: 0px 0px 5px #0fffcf;
+    padding: 1em;
+    background-color: #121212;
+}
