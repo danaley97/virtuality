@@ -316,6 +316,12 @@
 function loadVideo(index, videoSrc) {
     const videoElement = document.getElementById(`video${index}`);
     videoElement.src = videoSrc;
+
+    // Añadir evento para pausar el video cuando el modal se cierra
+    const modalElement = document.getElementById(`modal${index}`);
+    modalElement.addEventListener('hidden.bs.modal', function () {
+        videoElement.pause();
+    });
 }
         // Insertar las tarjetas en el contenedor
         const cardContainer = document.getElementById("cardContainer");
