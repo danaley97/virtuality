@@ -73,38 +73,43 @@
 
         // Función para generar el HTML de cada tarjeta y modal
         function createCard(card, index) {
-            return `
-                <div class="col-md-4 mb-4">
-                    <div class="card" style="width: 18rem;">
-                        <img src="${card.image}" class="card-img-top" alt="${card.title}">
-                        <div class="card-body">
-                            <h5 class="card-title">${card.title}</h5>
-                            <p class="card-text">${card.description}</p>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal${index}">
-                                Vista previa
-                            </button>
+    return `
+        <div class="col-md-4 mb-4">
+            <div class="card" style="width: 18rem;">
+                <img src="${card.image}" class="card-img-top" alt="${card.title}">
+                <div class="card-body">
+                    <h5 class="card-title">${card.title}</h5>
+                    <p class="card-text">${card.description}</p>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal${index}" onclick="loadVideo(${index}, '${card.video}')">
+                        Vista previa
+                    </button>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="modal${index}" tabindex="-1" aria-labelledby="modalLabel${index}" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalLabel${index}">${card.title}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                    </div>
-                    <!-- Modal -->
-                    <div class="modal fade" id="modal${index}" tabindex="-1" aria-labelledby="modalLabel${index}" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="modalLabel${index}">${card.title}</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <video src="${card.video}" class="w-100" autoplay loop muted controls></video>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                </div>
-                            </div>
+                        <div class="modal-body">
+                            <video id="video${index}" class="w-100" autoplay loop muted controls></video>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                         </div>
                     </div>
                 </div>
-            `;
-        }
+            </div>
+        </div>
+    `;
+}
+
+function loadVideo(index, videoSrc) {
+    const videoElement = document.getElementById(`video${index}`);
+    videoElement.src = videoSrc;
+}
 
         // Insertar las tarjetas en el contenedor
         const cardContainer = document.getElementById("cardContainer");
