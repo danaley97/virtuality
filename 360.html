@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VrCinema4</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="diseno.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="imagenes/logo.webp" type="image/webp">
+</head>
+<body>
+    <header>
+        <h1 style="text-align: center;">Cinema 360</h1>
+    </header>
+
+    <div id="sidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="index.html">VrCinema4</a>
+        <a href="#">Cabinas inmersivas</a>
+        <a href="#">360</a>
+        <a href="#">Campo de batalla</a>
+        <a href="#">Escape rooms</a>
+    </div>
+
+    <div id="main">
+        <!-- El resto de tu contenido -->
+    </div>
+
+
+    <main class="container justify-content-center mt-4">
+        <div id="cardContainer" class="row"></div>
+    </main>
+
+    <footer>
+        <p>&copy; Virtuality world 2024. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        // Datos de las tarjetas
+        const cards = [
+            {
+                title: "El viaje al fondo del mar",
+                description: "Huye del kraken a bordo de un rapido submnarino y explora el fondo del mar.",
+                image: "rsc/imagenes/FondoDelMar.jpeg",
+                video: "rsc/FondoDelMar.mp4"
+            },
+            {
+                title: "Montaña rusa de dubai",
+                description: "Visita a tus personajes favoritos de dreamworks a bordo de esta montaña rusa.",
+                image: "rsc/imagenes/Dubai.jpeg",
+                video: "rsc/pitufos.mp4"
+            },
+            {
+                title: "Caramelo volador",
+                description: "Explora el emocionante mundo de caramelos a bordo de una montaña rusa.",
+                image: "rsc/imagenes/CandyCoaster.jpeg",
+                video: "rsc/CandyCoaster.mp4"
+            },
+            //------------------------------------------------------------
+            {
+                title: "Super pendulo",
+                description: "Vive el vertigo y la emocion del super pendulo en las alturas. Solo para valientes.",
+                image: "rsc/imagenes/SuperPendulo.jpeg",
+                video: "rsc/SuperPendulo.mp4"
+            },
+            //------------------------------------------------------------
+            {
+                title: "Montaña rusa de la ciudad del futuro",
+                description: "Viaja al futuro a la ciudad mas tecnologica.",
+                image: "rsc/imagenes/CiudadDelFuturo.jpeg",
+                video: "rsc/CiudadDelFuturo.mp4"
+            },
+            {
+                title: "Planeta errante",
+                description: "Vive la emocion y las alturas del super pendulo ahora en el espacio. Solo valientes!",
+                image: "rsc/imagenes/PlanetaErrante.jpeg",
+                video: "rsc/PlanetaErrante.mp4"
+            },
+            //------------------------------------------------------------
+            {
+                title: "Montaña rusa de Hollywood",
+                description: "Subete a la montaña rusa real de hollywood. Vive la experiencia real en VR.",
+                image: "rsc/imagenes/Hollywood.jpeg",
+                video: "rsc/Holliwood.mp4"
+            },
+            {
+                title: "Montaña rusa del castillo",
+                description: "Conoce el castillo y el mundo medieval en esta montaña rusa super emocionante.",
+                image: "rsc/imagenes/MontanaRusaDelCastillo.jpeg",
+                video: "rsc/MontanaRusaCastillo.mp4"
+            },
+            {
+                title: "Montaña rusa acuatica",
+                description: "Disfruta de una montaña rusa acuatica en video real. Es muy divertida!",
+                image: "rsc/imagenes/MontanaRusaAcuatica.jpeg",
+                video: "rsc/MontanaRusaAcuatica.mp4"
+            } 
+        ];
+
+        // Función para generar el HTML de cada tarjeta y modal
+        function createCard(card, index) {
+    return `
+        <div class="col-md-4 mb-4">
+            <div class="card" style="width: 18rem;">
+                <img src="${card.image}" class="card-img-top" alt="${card.title}">
+                <div class="card-body">
+                    <h5 class="card-title">${card.title}</h5>
+                    <p class="card-text">${card.description}</p>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal${index}" onclick="loadVideo(${index}, '${card.video}')">
+                        Vista previa
+                    </button>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="modal${index}" tabindex="-1" aria-labelledby="modalLabel${index}" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalLabel${index}">${card.title}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <video id="video${index}" class="w-100" autoplay loop muted controls></video>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function loadVideo(index, videoSrc) {
+    const videoElement = document.getElementById(`video${index}`);
+    videoElement.src = videoSrc;
+}
+
+// Delegación de eventos para pausar videos cuando los modales se cierran
+document.addEventListener('hidden.bs.modal', function (event) {
+    const modalElement = event.target;
+    const videoElement = modalElement.querySelector('video');
+    if (videoElement) {
+        videoElement.pause();
+    }
+});
+
+// Insertar las tarjetas en el contenedor
+const cardContainer = document.getElementById("cardContainer");
+const cardsHTML = cards.map((card, index) => createCard(card, index)).join("");
+cardContainer.innerHTML = cardsHTML;
+
+// Lazy loading de videos
+document.addEventListener("DOMContentLoaded", function() {
+    const lazyVideos = [].slice.call(document.querySelectorAll("video.lazy"));
+
+    if ("IntersectionObserver" in window) {
+        let lazyVideoObserver = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(function(video) {
+                if (video.isIntersecting) {
+                    for (let source in video.target.children) {
+                        let videoSource = video.target.children[source];
+                        if (typeof videoSource.tagName === "string" && videoSource.tagName === "SOURCE") {
+                            videoSource.src = videoSource.dataset.src;
+                        }
+                    }
+
+                    video.target.load();
+                    video.target.classList.remove("lazy");
+                    lazyVideoObserver.unobserve(video.target);
+                }
+            });
+        });
+
+        lazyVideos.forEach(function(lazyVideo) {
+            lazyVideoObserver.observe(lazyVideo);
+        });
+    }
+});
+
+// Adding the new video element
+const newVideoElement = `
+<video id="video1" class="lazy" controls>
+    <source data-src="video1.mp4" type="video/mp4">
+</video>
+`;
+document.body.insertAdjacentHTML('beforeend', newVideoElement);
+
+function openNav() {
+    document.getElementById("sidebar").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+    document.getElementById("sidebar").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
+}
+
+// Manejar eventos de deslizamiento
+let touchstartX = 0;
+let touchendX = 0;
+
+function handleGesture() {
+    if (touchendX < touchstartX) {
+        openNav();
+    }
+    if (touchendX > touchstartX) {
+        closeNav();
+    }
+}
+
+document.addEventListener('touchstart', function(event) {
+    touchstartX = event.changedTouches[0].screenX;
+}, false);
+
+document.addEventListener('touchend', function(event) {
+    touchendX = event.changedTouches[0].screenX;
+    handleGesture();
+}, false);
+    </script>
+</body>
+</html>
