@@ -331,6 +331,42 @@ document.addEventListener('hidden.bs.modal', function (event) {
 const cardContainer = document.getElementById("cardContainer");
 const cardsHTML = cards.map((card, index) => createCard(card, index)).join("");
 cardContainer.innerHTML = cardsHTML;
+
+// Lazy loading de videos
+document.addEventListener("DOMContentLoaded", function() {
+    const lazyVideos = [].slice.call(document.querySelectorAll("video.lazy"));
+
+    if ("IntersectionObserver" in window) {
+        let lazyVideoObserver = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(function(video) {
+                if (video.isIntersecting) {
+                    for (let source in video.target.children) {
+                        let videoSource = video.target.children[source];
+                        if (typeof videoSource.tagName === "string" && videoSource.tagName === "SOURCE") {
+                            videoSource.src = videoSource.dataset.src;
+                        }
+                    }
+
+                    video.target.load();
+                    video.target.classList.remove("lazy");
+                    lazyVideoObserver.unobserve(video.target);
+                }
+            });
+        });
+
+        lazyVideos.forEach(function(lazyVideo) {
+            lazyVideoObserver.observe(lazyVideo);
+        });
+    }
+});
+
+// Adding the new video element
+const newVideoElement = `
+<video id="video1" class="lazy" controls>
+    <source data-src="video1.mp4" type="video/mp4">
+</video>
+`;
+document.body.insertAdjacentHTML('beforeend', newVideoElement);
     </script>
 </body>
 </html>
