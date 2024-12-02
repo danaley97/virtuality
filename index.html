@@ -12,7 +12,7 @@
 </head>
 <body>
     <header>
-        <h1 style="text-align: center;">VR Cinema 4</h1>
+        <h1 style="text-align: center;">VR Cinema 42</h1>
     </header>
 
     <div id="sidebar" class="sidebar">
@@ -395,11 +395,8 @@ let touchstartX = 0;
 let touchendX = 0;
 
 function handleGesture() {
-    if (touchendX < touchstartX) {
-        openNav();
-    }
     if (touchendX > touchstartX) {
-        closeNav();
+        openNav();
     }
 }
 
