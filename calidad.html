@@ -163,7 +163,7 @@ function loadVideo(index, videoSrc) {
     modalElement.addEventListener('hidden.bs.modal', function () {
         videoElement.pause();
     });
-
+}
         // Insertar las tarjetas en el contenedor
         const cardContainer = document.getElementById("cardContainer");
         cardContainer.innerHTML = cards.map((card, index) => createCard(card, index)).join("");
