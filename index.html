@@ -398,7 +398,8 @@ let touchendY = 0;
 
 function handleGesture() {
     const horizontalSwipe = Math.abs(touchendX - touchstartX) > Math.abs(touchendY - touchstartY);
-    if (horizontalSwipe && touchendX > touchstartX) {
+    const swipeFromLeftEdge = touchstartX < 50; // Ajusta este valor según sea necesario
+    if (horizontalSwipe && touchendX > touchstartX && swipeFromLeftEdge) {
         openNav();
     }
 }
